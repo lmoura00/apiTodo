@@ -1,10 +1,14 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
+import { column, beforeSave, BaseModel, hasMany, HasMany} from '@ioc:Adonis/Lucid/Orm'
+import Task from './Task'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
   public id: number
+
+  @column()
+  public name: string
 
   @column()
   public email: string
@@ -13,7 +17,10 @@ export default class User extends BaseModel {
   public password: string
 
   @column()
-  public rememberMeToken: string | null
+  public token: string | null
+
+  @hasMany(()=> Task)
+  public tasks: HasMany<typeof Task>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

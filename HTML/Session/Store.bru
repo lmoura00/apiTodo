@@ -1,0 +1,18 @@
+meta {
+  name: Store
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3333/session
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email":"teste@teste.com",
+    "password":"secret"
+  }
+}
